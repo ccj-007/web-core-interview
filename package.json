@@ -1,0 +1,19 @@
+{
+  "name": "web-core-interview",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ccj-007/web-core-interview.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ccj-007/web-core-interview/issues"
+  },
+  "homepage": "https://github.com/ccj-007/web-core-interview#readme"
+}
