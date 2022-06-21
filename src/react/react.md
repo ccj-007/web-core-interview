@@ -54,7 +54,10 @@
       中间件机制类似koa，experess内的我们常用的登录校验，那么redux在这里解决的就是reducer执行之前，强化dispatch做一个处理，本质就是一个compose的高阶函数嵌套，柯里化，你可以处理日志操作，对异步函数做层封装。
  6. **react的性能优化**
       
+      通过React.memo 结合 useCallback 来缓存函数, 来优化子组件防止子组件渲染。useMemo可以缓存复杂的计算，优化当前组件或者子组件
  7.  **react的合成事件是什么，和原生事件的区别？**
+
+      react的合成事件就是为了性能优化，原来的onClick等一些api事件的会统一冒泡到document，然后传递给一个中间层syntheticEvent来负责事件的优化分配合成，然后dispatchEvent重写对应的click事件。
 
 ``
 
