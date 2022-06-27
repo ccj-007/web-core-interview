@@ -1,6 +1,7 @@
  # Recat 
  [react官网](https://react.docschina.org/)
  ![react](https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fupload-images.jianshu.io%2Fupload_images%2F544385-826e7b97a5760c91.JPG%3FimageMogr2%2Fauto-orient%2Fstrip%257CimageView2%2F2%2Fw%2F1240&refer=http%3A%2F%2Fupload-images.jianshu.io&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=auto?sec=1658104469&t=49c8bfa2fab26f66afbde5e46eae392a)
+   [2019年17道高频React面试题及详解](https://juejin.cn/post/6844903922453200904#heading-3)
  <br>
  <br>
  <br>
@@ -26,13 +27,11 @@
 
     反向继承（直接hoc包裹继承父组件）的缺点: 多次复用，会覆盖上一次。
 
-
- 1. **为什么有时候react两次setState，只执行一次**
+ 3. **为什么有时候react两次setState，只执行一次**
       
     React会对多次连续的 setState进行合并，如果你想立即使用上次 setState后的结果进行下一次 setState，可以让 setState 接收一个函数而不是一个对象。这个函数用第一个参数为上一次的state，第二个参数为此时更新被应用props
 
-
- 2. **redux有哪些原则？ 原理呢?**
+ 4. **redux有哪些原则？ 原理呢?**
   [](https://juejin.cn/post/6868103822271758344)
 
     1.单一的数据源，store都集中在一个状态树中
@@ -40,8 +39,8 @@
     2，state是只读的，只能通过action来改变，reducer来处理
 
     3.reducer必须是纯函数，不能是有副作用，当状态改变的时候，需要返回一个新的state
- 3. **react是如何处理异常的？**
- 4. **react为什么需要fiber, fiber的优点有哪些？**
+   
+ 5. **react为什么需要fiber, fiber的优点有哪些？**
      fiber出现是为了解决react的自上而下渲染性能的问题，可以以链表的形式来实时保存当时的状态，不用重新渲染子组件。
      fiber本质就是解决虚拟dom树中的算法用到了dfs的后续遍历，fiber的架构解决了原架构的如果断开无法找到父节点，每个节点会有3个指针，一个指向第一个子节点，下个兄弟节点，父节点。本质就是一个是树结构一个是链表的结构。
 
@@ -49,15 +48,37 @@
 
      fiber的概念就是一个虚拟dom树的diff算法比较的时候开销大，用fiber可以分段获取状态比较diff，开销小些，最后比较完成后渲染更新视图
 
- 5. **redux的中间件机制 ？**
+ 6. **redux的中间件机制 ？**
      
       中间件机制类似koa，experess内的我们常用的登录校验，那么redux在这里解决的就是reducer执行之前，强化dispatch做一个处理，本质就是一个compose的高阶函数嵌套，柯里化，你可以处理日志操作，对异步函数做层封装。
- 6. **react的性能优化**
+
+ 7. **react的性能优化**
       
       通过React.memo 结合 useCallback 来缓存函数, 来优化子组件防止子组件渲染。useMemo可以缓存复杂的计算，优化当前组件或者子组件
- 7.  **react的合成事件是什么，和原生事件的区别？**
+
+ 8.  **react的合成事件是什么，和原生事件的区别？**
 
       react的合成事件就是为了性能优化，原来的onClick等一些api事件的会统一冒泡到document，然后传递给一个中间层syntheticEvent来负责事件的优化分配合成，然后dispatchEvent重写对应的click事件。
 
+ 9.  **react的生命周期是怎么样的？**
+
+      react的16版本祛除了三个will的生命周期，将要mounted，updated，props
+      对应的新的阶段挂载、更新、卸载
+
+      挂载阶段  
+      constructor  类似cerated
+      getDerivedStateFromProps 传参
+      render 渲染
+      componentDidMount  此时渲染dom，能操作dom
+
+      更新阶段  
+      getDerivedStateFromProps 传参 （组件在使用中传参）
+      shouldComponentUpdate 来显示变化后的props state，在这个钩子可以做性能优化
+      render  
+      getSnapshotBeforeUpdate  获得之前的state props    
+      componentDidUpdate   状态变化后的触发更新  
+
+      卸载阶段
+      componentWillUnmount  卸载事件、定时器、dom
 ``
 
